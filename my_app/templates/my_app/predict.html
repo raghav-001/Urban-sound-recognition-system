@@ -1,0 +1,169 @@
+{% load static %}
+<html>
+
+<head>
+    <title>Urban sound recognition</title>
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet">
+
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/js/mdb.min.js"></script>
+</head>
+<style>
+    html,
+    body,
+    header,
+    #intro-section {
+        height: 100%;
+        position: relative;
+    }
+
+    @media (max-width: 740px) {
+
+        html,
+        body,
+        header,
+        #intro-section {
+            height: 100vh;
+        }
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+
+    .bg {
+        background-image: url("{% static 'my_app/images/ai.png' %}");
+        height: 100%;
+        width: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .content {
+        position: relative;
+        top: 10px;
+        left: 250px;
+        background: rgba(105, 153, 172, 0.7);
+        color: #f1f1f1;
+        width: 60%;
+        height: 55%;
+        padding: 30px;
+        padding-top: 60px;;
+        border-radius: 2px;
+    }
+
+    input[type=submit] {
+        width: 30%;
+        background-color: #1e3849;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        position: relative;
+        left: 260px;
+    }
+
+    .page-footer {
+
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #1e3849;
+        color: white;
+        text-align: left;
+    }
+</style>
+
+<body>
+    <section>
+        <div class="view" id="intro-section">
+            <div class="bg" id="intro-section">
+                <div class="container">
+                    <div class="content">
+                        <h1 class="text-center">Urban Sound Recognition System</h1><br><br>
+                        <h3 class="text-center">The audio that the system heard is:</h3><br>
+                        <!--<h2 class="text-center">DOG</h2>-->
+                        <h2 class="text-center">{{ label_name }} </h2>
+                    </div>
+                </div>
+            </div>
+            <div>
+    </section>
+    <section class="py-5" style="background-color:rgba(105, 153, 172, 0.7);">
+        <div class="container">
+            <h2 class="text-center" style="font-family: Century Gothic; font-weight: bold; text-decoration: underline;">
+                ABOUT</h2><br><br>
+            <div class="row">
+                <div class="col-sm-6 col-md-6 py-2">
+                    <img src="{% static 'my_app/images/freq1.png' %}" alt="image not found" width="550" height="300"
+                        style="position: relative; right:60px;">
+                    <br><br>
+                    <audio controls>
+                        <source src="{% static audio_path_fig %}" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+                <div class="col-sm-6 col-md-6 text-right py-2">
+                    <img src="{% static 'my_app/images/train_valid.png' %}" alt="image not found" width="450"
+                        height="300" style="position: relative; left:40px;">
+                </div>
+            </div>
+            <p class="w3-large" style="font-family: Times New Roman, Georgia, Serif;font-size: large;">
+                <br>
+                <br>
+                The audio given to the prediction system above is {{ label_name }}. The above system was trained using a
+                CNN model and an accuracy of 90.2% was
+                obtained. The audio of the file uploaded to the system can be played in the top left. The training and
+                validation accuracy graph is plotted above as well, as
+                a measure to show the results of the accuracy of the Urban sound prediction system. Several algorithms
+                were tested and the algorithm that gave the best results are used for this
+                system.
+            </p>
+        </div>
+    </section>
+
+    <footer class="page-footer font-md py-3" id="contact">
+        <div class="container">
+            <p class="text-center">
+                <b>Team Member details: V Raghav Anand- 19BCE1415 || R Faerie Mattins- 19BCE1696 || Pavitra Vasudevan-
+                    19BCE1756<br>
+                </b>
+            </p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
